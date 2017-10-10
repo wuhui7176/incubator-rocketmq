@@ -28,6 +28,7 @@ public class TransactionProducer {
     public static void main(String[] args) throws MQClientException, InterruptedException {
         TransactionCheckListener transactionCheckListener = new TransactionCheckListenerImpl();
         TransactionMQProducer producer = new TransactionMQProducer("please_rename_unique_group_name");
+        producer.setNamesrvAddr("127.0.0.1:1234");
         producer.setCheckThreadPoolMinSize(2);
         producer.setCheckThreadPoolMaxSize(2);
         producer.setCheckRequestHoldMax(2000);

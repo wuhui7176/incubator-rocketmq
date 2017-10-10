@@ -305,7 +305,7 @@ public class BrokerController {
                 @Override
                 public void run() {
                     try {
-                        BrokerController.this.printWaterMark();
+//                        BrokerController.this.printWaterMark();
                     } catch (Throwable e) {
                         log.error("printWaterMark error.", e);
                     }
