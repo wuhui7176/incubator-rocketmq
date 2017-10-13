@@ -74,13 +74,14 @@ public class ProducerManager {
                             Entry<Channel, ClientChannelInfo> item = it.next();
                             // final Integer id = item.getKey();
                             final ClientChannelInfo info = item.getValue();
-
+                            //最后发送时间
                             long diff = System.currentTimeMillis() - info.getLastUpdateTimestamp();
                             if (diff > CHANNEL_EXPIRED_TIMEOUT) {
                                 it.remove();
                                 log.warn(
                                     "SCAN: remove expired channel[{}] from ProducerManager groupChannelTable, producer group name: {}",
                                     RemotingHelper.parseChannelRemoteAddr(info.getChannel()), group);
+                                //关闭 channel
                                 RemotingUtil.closeChannel(info.getChannel());
                             }
                         }

@@ -200,6 +200,7 @@ public class BrokerController {
 
         if (result) {
             try {
+                //初始化数据仓库
                 this.messageStore =
                     new DefaultMessageStore(this.messageStoreConfig, this.brokerStatsManager, this.messageArrivingListener,
                         this.brokerConfig);
@@ -394,6 +395,7 @@ public class BrokerController {
         this.fastRemotingServer.registerProcessor(RequestCode.SEND_MESSAGE_V2, sendProcessor, this.sendMessageExecutor);
         this.fastRemotingServer.registerProcessor(RequestCode.SEND_BATCH_MESSAGE, sendProcessor, this.sendMessageExecutor);
         this.fastRemotingServer.registerProcessor(RequestCode.CONSUMER_SEND_MSG_BACK, sendProcessor, this.sendMessageExecutor);
+
         /**
          * PullMessageProcessor
          */
@@ -650,7 +652,7 @@ public class BrokerController {
         if (this.pullRequestHoldService != null) {
             this.pullRequestHoldService.start();
         }
-
+        //心跳保活
         if (this.clientHousekeepingService != null) {
             this.clientHousekeepingService.start();
         }

@@ -21,6 +21,7 @@ import org.apache.rocketmq.common.UtilAll;
 import org.apache.rocketmq.remoting.common.RemotingUtil;
 
 /**
+ * 客户端通用配置
  * Client Common configuration
  */
 public class ClientConfig {

@@ -28,13 +28,12 @@ public class TransactionProducer {
     public static void main(String[] args) throws MQClientException, InterruptedException {
         TransactionCheckListener transactionCheckListener = new TransactionCheckListenerImpl();
         TransactionMQProducer producer = new TransactionMQProducer("please_rename_unique_group_name");
-        producer.setNamesrvAddr("127.0.0.1:1234");
+        producer.setNamesrvAddr("127.0.0.1:9876");
         producer.setCheckThreadPoolMinSize(2);
         producer.setCheckThreadPoolMaxSize(2);
         producer.setCheckRequestHoldMax(2000);
         producer.setTransactionCheckListener(transactionCheckListener);
         producer.start();
-
         String[] tags = new String[] {"TagA", "TagB", "TagC", "TagD", "TagE"};
         TransactionExecuterImpl tranExecuter = new TransactionExecuterImpl();
         for (int i = 0; i < 100; i++) {
@@ -50,7 +49,6 @@ public class TransactionProducer {
                 e.printStackTrace();
             }
         }
-
         for (int i = 0; i < 100000; i++) {
             Thread.sleep(1000);
         }
